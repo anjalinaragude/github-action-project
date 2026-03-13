@@ -52,12 +52,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # 8️⃣
+      # 8️⃣ Install kubectl correctly
       - name: Install kubectl
         uses: aws-actions/setup-kubectl@v3
         with:
           version: '1.35.2'
-          
 
       # 9️⃣ Update kubeconfig for EKS
       - name: Update kubeconfig
