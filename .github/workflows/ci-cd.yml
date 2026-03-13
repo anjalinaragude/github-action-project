@@ -17,18 +17,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up NodeJS 
+      # Setup Node.js
       - name: Set up NodeJS
         uses: actions/setup-node@v3
         with:
           node-version: '14'
 
-      # Install NodeJS dependencies
-      - name: Install NodeJS dependencies
+      # Install dependencies
+      - name: Install dependencies
         run: npm install
 
-         # SonarQube Analysis
+      # SonarCloud Scan
       - name: SonarCloud Scan
-       uses: SonarSource/sonarqube-scan-action@v5
-      env:
-       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
