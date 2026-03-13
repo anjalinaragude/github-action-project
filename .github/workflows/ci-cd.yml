@@ -37,6 +37,7 @@ jobs:
         run: |
           docker build -t actions-app:${{ github.sha}} .  
           docker tag actions-app:${{ github.sha}} ${{ secrets.ECR_REPOSITORY_URI}}/action-cicd:latest
+          docker tag actions-app:${{ github.sha}} ${{ secrets.DOCKERHUB_USERNAME }}/actions-cicd:latest
 
        # Trivy Scan
       - name: Trivy Scan
@@ -58,3 +59,10 @@ jobs:
       - name: Push image to Amazon ECR
         run: |
           docker push ${{ secrets.ECR_REPOSITORY_URI}}/action-cicd:latest
+           # Log in to DockerHub
+      - name: Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
